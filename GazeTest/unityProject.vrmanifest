@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.gazetest.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\zlin697\\Desktop\\Unity-3D-Magnus-Effect-master\\GazeTest\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\zlin697\\Documents\\Gaze_based_authentication\\GazeTest\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "GazeTest [Testing]"
