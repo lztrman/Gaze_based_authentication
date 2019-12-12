@@ -12,7 +12,9 @@ public class GetPassword : MonoBehaviour
     // Start is called before the first frame update
     private GameObject line;
     private LineRenderer _lr;
-
+    private int matchCount = 0;
+    private string testPassword = "";
+    public GameObject textbox;
 
     void Start()
     {
@@ -21,47 +23,70 @@ public class GetPassword : MonoBehaviour
         line.transform.position = new Vector3(0,0,0);
         line.AddComponent<LineRenderer>();
         _lr = line.GetComponent<LineRenderer>();
-        _lr.startWidth = 0.1f;
-        _lr.endWidth = 0.1f;
-        //_lr.material = new Material(Shader.Find("ParticleSystem"));
+        _lr.startWidth = 0.05f;
+        _lr.endWidth = 0.05f;
+        //_lr.material = new Material(Shader.Find("Default-Diffuse"));
         _lr.startColor = Color.white;
         _lr.endColor = Color.white;
+        //Debug.Log("1".Equals(_password.Substring(0, 1)));
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        textbox.GetComponent<UnityEngine.UI.Text>().text = testPassword;
         if (_getInput)
         {
             if (TobiiXR.FocusedObjects.Count > 0)
             {
                 var focusedObject = TobiiXR.FocusedObjects[0].GameObject;
-                passwordInput.Add(focusedObject);
+                testPassword = "";
+                if(passwordInput.Contains(focusedObject) == false) { passwordInput.Add(focusedObject); }
+                
+                foreach(GameObject i in passwordInput)
+                {
+                    testPassword += i.name;
+                    //i.GetComponent<BoxCollider>().enabled = false;
+                }
+                Debug.Log(testPassword+ " " + _password.Substring(0, testPassword.Length));
+                if (testPassword.Equals(_password.Substring(0, testPassword.Length)))
+                {
+                    matchCount++;
+                    Debug.Log(matchCount);
+                }
+                else
+                {
+                    matchCount = 0;
+                    foreach(GameObject i in passwordInput)
+                    {
+                        //i.GetComponent<BoxCollider>().enabled = true;
+                    }
+                    passwordInput = new List<GameObject>();
+                }
                 _getInput = false;
-                InvokeRepeating("startinput",2,5);
+                if(testPassword.Length == _passwordLength)
+                {
+                    testPassword = "Sucessfully unlock";
+                }
+                else
+                {
+                    InvokeRepeating("startinput", 1, 5);
+                }
             }
+
         }
-        //if (TobiiXR.FocusedObjects.Count > 0)
-        //{
-        // The object being focused by the user, determined by G2OM.
-        //var focusedObject = TobiiXR.FocusedObjects[0];
-        //GameObject lookingTo = focusedObject.GameObject;
 
-        //}
-        //for(int i = 0; i < passwordInput.Count - 1; i++)
-        //{
-        //DrawLine(passwordInput[i].transform.position, passwordInput[i + 1].transform.position, Color.black, 10);
-        //}
-        Debug.Log(_lr.positionCount);
-        //if (_lr.positionCount != passwordInput.Count)
-        //{
-            //_lr.positionCount = passwordInput.Count;
-           // for (int i = 0; i < passwordInput.Count; i++)
-           // {
-              //  _lr.SetPosition(i, passwordInput[i].transform.position);
-           // }
-        //}
-
+        //Draw the line that consists of the objects stored in the list
+        if (_lr.positionCount != passwordInput.Count)
+        {
+            _lr.positionCount = passwordInput.Count;
+           for (int i = 0; i < passwordInput.Count; i++)
+           {
+              _lr.SetPosition(i, passwordInput[i].transform.position);
+           }
+        }
+        
     }
 
     void startinput()
