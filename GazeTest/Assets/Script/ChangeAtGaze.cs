@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 
 using UnityEngine;
-
+using Tobii.XR;
 using Tobii.G2OM;
 
 
@@ -16,14 +16,17 @@ public class ChangeAtGaze : MonoBehaviour, IGazeFocusable
     {
         if (hasFocus)
         {
+            var eyeTrackingData = TobiiXR.GetEyeTrackingData(TobiiXR_TrackingSpace.Local);
+            bool isLeftEyeBlinking = eyeTrackingData.IsLeftEyeBlinking;
+
+            //Debug.Log("eye blink" + isLeftEyeBlinking);
             GetComponent<UnityEngine.UI.Text>().text = GetComponent<UnityEngine.UI.Text>().text.ToUpper();
-            Debug.Log(database.GetComponent<Data>().locked & database.GetComponent<Data>().getInput);
-            if (database.GetComponent<Data>().locked & database.GetComponent<Data>().getInput)
+            if (database.GetComponent<Data>().locked & isLeftEyeBlinking)
             {
                 if (database.GetComponent<Data>().passwordtest.Contains(gameObject) == false)
                 {
                     database.GetComponent<Data>().passwordtest.Add(gameObject);
-                    database.GetComponent<Data>().setInput();  
+                    //database.GetComponent<Data>().setInput();  
                 }
                 database.GetComponent<Data>().matchCount = match();
             }
