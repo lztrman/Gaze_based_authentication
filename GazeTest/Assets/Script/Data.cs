@@ -10,6 +10,7 @@ public class Data : MonoBehaviour
     public int matchCount = 0;
     public GameObject textbox;
     public bool locked = true;
+    public bool getInput = true;
     private GameObject line;
     private LineRenderer _lr;
     // Start is called before the first frame update
@@ -43,5 +44,26 @@ public class Data : MonoBehaviour
             locked = false;
             textbox.GetComponent<UnityEngine.UI.Text>().text = "Sucessfully unlock";
         }
+    }
+
+    public void wrongPass()
+    {
+        textbox.GetComponent<UnityEngine.UI.Text>().text = "wrong";
+    }
+
+    public void setInput()
+    {
+        getInput = false;
+        InvokeRepeating("startinput", 1, 5);
+    }
+
+    void startinput()
+    {
+        getInput = true;
+        CancelInvoke();
+    }
+    public void display(string input)
+    {
+        textbox.GetComponent<UnityEngine.UI.Text>().text = input;
     }
 }

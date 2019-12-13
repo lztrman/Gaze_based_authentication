@@ -58,6 +58,10 @@ public class GetPassword : MonoBehaviour
                 else
                 {
                     matchCount = 0;
+                    foreach(GameObject i in passwordInput)
+                    {
+                        //i.GetComponent<BoxCollider>().enabled = true;
+                    }
                     passwordInput = new List<GameObject>();
                 }
                 _getInput = false;
