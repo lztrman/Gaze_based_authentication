@@ -6,7 +6,7 @@ using UnityEngine;
 public class Dial : MonoBehaviour
 {
     public GameObject textbox;
-    private int radius = 150;
+    private int radius = 200;
     // Start is called before the first frame update
     void Start()
     {
