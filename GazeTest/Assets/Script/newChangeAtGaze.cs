@@ -19,6 +19,8 @@ public class newChangeAtGaze : MonoBehaviour, IGazeFocusable
         
     }
 
+    //If this object is focused by users, check if the game object list contain this object. 
+    //If not contain this object, add it into the list. it makes the items in the list are unique. 
     public void GazeFocusChanged(bool hasFocus)
     {
         if (hasFocus)
@@ -34,7 +36,9 @@ public class newChangeAtGaze : MonoBehaviour, IGazeFocusable
         }
     }
 
-    int match()
+    //Check if the password user input so far is the same with the first substring of password stored in with the same length.
+    //If same, return the count of match. If not, return 0.
+    int match()             
     {
         string testpassword = "";
         foreach (GameObject i in database.GetComponent<Data>().passwordtest)

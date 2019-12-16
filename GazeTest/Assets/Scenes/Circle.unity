@@ -523,9 +523,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passwordtest: []
-  password: 1364
+  password: 123654
   matchCount: 0
-  textbox: {fileID: 287862387}
+  textbox: {fileID: 0}
   locked: 1
   getInput: 1
 --- !u!4 &1844693856
@@ -838,15 +838,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1983534505904702552, guid: 7a27ab9e4c736434987aaff683cf2f3b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1983534505904702551, guid: 7a27ab9e4c736434987aaff683cf2f3b,
         type: 3}
       propertyPath: m_Size.x
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1983534505904702552, guid: 7a27ab9e4c736434987aaff683cf2f3b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

@@ -16,6 +16,7 @@ public class Data : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //set the line render.
         line = new GameObject();
         line.transform.position = new Vector3(0, 0, 0);
         line.AddComponent<LineRenderer>();
@@ -27,6 +28,7 @@ public class Data : MonoBehaviour
     }
 
     // Update is called once per frame
+    // Update the line render per frame
     void Update()
     {
         if (_lr.positionCount != passwordtest.Count)
